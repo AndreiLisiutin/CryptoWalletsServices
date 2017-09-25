@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoWalletsServices.WebCryptoSim.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -9,10 +10,9 @@ namespace CryptoWalletsServices.WebCryptoSim
     {
         public static void Register(HttpConfiguration config)
         {
-            // Конфигурация и службы веб-API
+			config.Filters.Add(new BaseExceptionHandleAttribure());
 
-            // Маршруты веб-API
-            config.MapHttpAttributeRoutes();
+			config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

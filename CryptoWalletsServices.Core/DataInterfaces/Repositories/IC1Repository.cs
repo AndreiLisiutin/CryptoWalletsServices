@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoWalletsServices.Core.Models.Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,16 @@ namespace CryptoWalletsServices.Core.DataInterfaces.Repositories
 {
 	public interface IC1Repository
 	{
+		C1Rescponse<string> Sign(byte[] file, Guid certificateId, string textForUser);
+
+		C1Rescponse<object> Activate(string msisdn, string iccid);
+
+		C1Rescponse<Guid> GenerateCertificate(GenerateCertificateRequest requestData);
+
+		C1Rescponse<List<Guid>> GetCertificates(string msisdn);
+
+		C1Rescponse<string> GetCertificate(Guid certificateId);
+
+		C1Rescponse<Guid> RequestAccessToCertificate(string msisdn);
 	}
 }

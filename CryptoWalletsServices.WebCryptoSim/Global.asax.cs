@@ -1,14 +1,12 @@
-﻿using CryptoWalletsServices.Core.DataInterfaces.Utilities;
+﻿using CryptoWalletsServices.Core.DataInterfaces.Repositories;
+using CryptoWalletsServices.Core.DataInterfaces.Utilities;
+using CryptoWalletsServices.Data.Repositories;
 using CryptoWalletsServices.Data.Utilities;
 using LightInject;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Web.Configuration;
 using System.Web.Http;
-using System.Web.Routing;
 
 namespace CryptoWalletsServices.WebCryptoSim
 {
@@ -18,16 +16,16 @@ namespace CryptoWalletsServices.WebCryptoSim
 		{
 			var container = new ServiceContainer();
 			GlobalConfiguration.Configure(WebApiConfig.Register);
-
+			RegisterSercvices(container);
 			container.RegisterApiControllers();
-
 			container.EnableWebApi(GlobalConfiguration.Configuration);
 		}
 
 		private void RegisterSercvices(ServiceContainer container)
 		{
 			container.Register<ICryptographyUtility, CryptographyUtility>();
-			container.Register<Configuration>((factory) => WebConfigurationManager.OpenWebConfiguration(null));
+			container.Register<IC1Repository, C1Repository>();
+			container.Register<Configuration>((factory) => WebConfigurationManager.OpenWebConfiguration("~/"));
 		}
 	}
 }

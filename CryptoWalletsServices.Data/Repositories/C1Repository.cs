@@ -82,7 +82,7 @@ namespace CryptoWalletsServices.Data.Repositories
 			return response;
 		}
 
-		C1Rescponse<object> Activate(string msisdn, string iccid)
+		public C1Rescponse<object> Activate(string msisdn, string iccid)
 		{
 			var parameters = new
 			{
