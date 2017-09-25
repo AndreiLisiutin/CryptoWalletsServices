@@ -3,7 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoWalletsServices.Core", "CryptoWalletsServices.Core\CryptoWalletsServices.Core.csproj", "{F206EE6E-D511-4021-A75B-45E0261B02D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoWalletsServices.Data", "CryptoWalletsServices.Data\CryptoWalletsServices.Data.csproj", "{0F2E8789-0B5A-4723-BD39-767B96338F36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoWalletsServices.Utils", "CryptoWalletsServices.Utils\CryptoWalletsServices.Utils.csproj", "{CCAAF0A3-9F57-49A1-B38A-33F9C34D08DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoWalletsServices.WebCryptoSim", "CryptoWalletsServices.WebCryptoSim\CryptoWalletsServices.WebCryptoSim.csproj", "{E9A79C16-101E-4387-BE10-8B839977395E}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F206EE6E-D511-4021-A75B-45E0261B02D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F206EE6E-D511-4021-A75B-45E0261B02D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F206EE6E-D511-4021-A75B-45E0261B02D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F206EE6E-D511-4021-A75B-45E0261B02D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F2E8789-0B5A-4723-BD39-767B96338F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2E8789-0B5A-4723-BD39-767B96338F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F2E8789-0B5A-4723-BD39-767B96338F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2E8789-0B5A-4723-BD39-767B96338F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCAAF0A3-9F57-49A1-B38A-33F9C34D08DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCAAF0A3-9F57-49A1-B38A-33F9C34D08DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCAAF0A3-9F57-49A1-B38A-33F9C34D08DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCAAF0A3-9F57-49A1-B38A-33F9C34D08DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A79C16-101E-4387-BE10-8B839977395E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A79C16-101E-4387-BE10-8B839977395E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A79C16-101E-4387-BE10-8B839977395E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A79C16-101E-4387-BE10-8B839977395E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
