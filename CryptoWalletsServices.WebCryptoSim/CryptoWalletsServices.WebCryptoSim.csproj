@@ -99,7 +99,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\components\get-certificates\get-certificates.html" />
+    <Content Include="app\components\get-certificates\get-certificates.js" />
+    <Content Include="app\components\navigation\navigation.html" />
+    <Content Include="app\components\navigation\navigation.js" />
+    <Content Include="app\components\_layout\main.html" />
+    <Content Include="bower_components\angular-animate\angular-animate.min.js" />
+    <Content Include="bower_components\angular-resource\angular-resource.min.js" />
+    <Content Include="bower_components\angular-route\angular-route.min.js" />
+    <Content Include="bower_components\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="bower_components\angular-toastr\dist\angular-toastr.min.css" />
+    <Content Include="bower_components\angular-toastr\dist\angular-toastr.min.js" />
+    <Content Include="bower_components\angular-toastr\dist\angular-toastr.tpls.min.js" />
+    <Content Include="bower_components\angular-ui-router-styles\ui-router-styles.js" />
+    <Content Include="bower_components\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="bower_components\angular\angular.min.js" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="bower_components\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="bower_components\html5-boilerplate\dist\js\vendor\modernizr-2.8.3.min.js" />
+    <Content Include="bower_components\jquery\dist\jquery.min.js" />
+    <Content Include="bower_components\lodash\dist\lodash.min.js" />
+    <Content Include="bower_components\tether\dist\js\tether.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="nlog.config" />
+    <Content Include="package.json" />
+    <Content Include="bower.json" />
+    <Content Include="app\services\c1.service.js" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -122,7 +148,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

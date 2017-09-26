@@ -1,0 +1,21 @@
+{
+	"name": "asp.net",
+	"private": true,
+	"dependencies": {
+		"angular": "1.5.11",
+		"angular-sanitize": "1.5.11",
+		"angular-route": "1.5.11",
+		"angular-resource": "1.5.11",
+		"angular-ui-router": "0.2.13",
+		"angular-ui-router-styles": "1.1.0",
+		"angular-animate": "1.5.11",
+		"angular-toastr": "2.1.1",
+		"lodash": "4.17.4",
+		"html5-boilerplate": "^5.3.0",
+		"jquery": "3.2.1",
+		"bootstrap": "v4.0.0-alpha.6"
+	},
+	"resolutions": {
+		"angular": "1.5.11"
+	}
+}

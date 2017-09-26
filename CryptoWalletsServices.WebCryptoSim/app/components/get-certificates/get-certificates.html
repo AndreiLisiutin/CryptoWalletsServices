@@ -1,0 +1,11 @@
+﻿<h2>GetCertificates</h2>
+<div class="">
+	<form name="certForm">
+		<div class="form-group row" ng-class="{'has-danger': certForm.msisdn.$invalid}">
+			<label class="col-lg-2 col-form-label" for="msisdn">Номер телефона</label>
+			<input name="msisdn" id="msisdn" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.msisdn">
+		</div>
+		<button class="btn btn-primary" ng-disabled="certForm.$invalid" ng-click="doTest()">ОК</button>
+	</form>
+</div>

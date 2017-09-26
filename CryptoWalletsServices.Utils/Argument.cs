@@ -83,11 +83,12 @@ namespace CryptoWalletsServices.Utils
 		/// </summary>
 		/// <param name="object">Результат проверки.</param>
 		/// <param name="exception">Сообщение об ошибке.</param>
-		public static void Require(bool condition, string exception)
+		/// <param name="innerException">Внутренняя ошибка.</param>
+		public static void Require(bool condition, string exception, Exception innerException = null)
 		{
 			if (!condition)
 			{
-				throw new ApplicationExceptionBase(exception);
+				throw new ApplicationExceptionBase(exception, innerException);
 			}
 		}
 	}

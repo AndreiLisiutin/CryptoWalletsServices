@@ -1,0 +1,9 @@
+{
+	"version": "1.0.0",
+	"name": "crypto-wallets-services.web-crypto-sim",
+	"private": true,
+	"devDependencies": {
+		"bower": "^1.7.7",
+		"concurrently": "3.5.0"
+	}
+}

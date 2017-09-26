@@ -2,12 +2,14 @@
 using CryptoWalletsServices.Core.DataInterfaces.Utilities;
 using CryptoWalletsServices.Core.Models.Business;
 using CryptoWalletsServices.Utils;
+using CryptoWalletsServices.Utils.Exceptions;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,6 +57,8 @@ namespace CryptoWalletsServices.Data.Repositories
 
 		protected C1Rescponse<T> Request<T>(string url, object data, Action<RestRequest> requestTransform = null, Method method = Method.POST)
 		{
+			Argument.Require(!string.IsNullOrEmpty(url), "URL метода пустой.");
+			Argument.Require(data != null, "Переданные данные пустые.");
 			string message = JsonConvert.SerializeObject(data);
 
 			byte[] msgBytes = this.ServiceApiEncoding.GetBytes(message);
@@ -65,7 +69,14 @@ namespace CryptoWalletsServices.Data.Repositories
 			request.AddFileBytes("request", encodedSignature, "request.json", "application/json");
 			requestTransform?.Invoke(request);
 			IRestResponse<C1Rescponse<T>> response = this.ServiceApiClient.Execute<C1Rescponse<T>>(request);
+			Argument.Require(IsSuccessStatusCode(response.StatusCode), "Возникла ошибка при выполнении запроса к 1С.", new Exception(response.Content));
+
 			return response.Data;
+		}
+
+		public bool IsSuccessStatusCode(HttpStatusCode statusCode)
+		{
+			return ((int)statusCode >= 200) && ((int)statusCode <= 299);
 		}
 
 		public C1Rescponse<string> Sign(byte[] file, Guid certificateId, string textForUser)
@@ -116,7 +127,7 @@ namespace CryptoWalletsServices.Data.Repositories
 					["1.2.840.113549.1.9.1"] = requestData.Email,
 				}
 			};
-			
+
 			C1Rescponse<Guid> response = this.Request<Guid>("/Certificates/Generate", parameters);
 			return response;
 		}
@@ -128,7 +139,7 @@ namespace CryptoWalletsServices.Data.Repositories
 				MSISDN = msisdn,
 				callbackUri = ""
 			};
-			
+
 			C1Rescponse<List<Guid>> response = this.Request<List<Guid>>("/Certificates/GetCertificates", parameters);
 			return response;
 		}
@@ -140,7 +151,7 @@ namespace CryptoWalletsServices.Data.Repositories
 				certificateGuid = certificateId,
 				callbackUri = ""
 			};
-			
+
 			C1Rescponse<string> response = this.Request<string>("/Certificates/GetCertificate", parameters);
 			return response;
 		}
@@ -155,6 +166,6 @@ namespace CryptoWalletsServices.Data.Repositories
 			C1Rescponse<Guid> response = this.Request<Guid>("/Certificates/RequestAccess", parameters);
 			return response;
 		}
-		
+
 	}
 }
