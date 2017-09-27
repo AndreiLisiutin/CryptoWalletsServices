@@ -45,6 +45,8 @@
     <Compile Include="Models\Business\C1Rescponse.cs" />
     <Compile Include="Models\Business\GenerateCertificateRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceInterfaces\IC1Service.cs" />
+    <Compile Include="Services\C1Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Enums\" />

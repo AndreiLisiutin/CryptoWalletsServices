@@ -1,0 +1,14 @@
+﻿/* Стиль для полосочки загрузки, сверху которая */
+.progress {
+	position: fixed;
+	z-index: 999999999;
+	width: 100%;
+	background: none;
+	height: 37px;
+	top: 0;
+}
+
+#nprogress .bar {
+	background: black;
+	height: 5px;
+}

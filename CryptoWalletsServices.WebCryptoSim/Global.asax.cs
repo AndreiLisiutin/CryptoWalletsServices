@@ -1,5 +1,7 @@
 ﻿using CryptoWalletsServices.Core.DataInterfaces.Repositories;
 using CryptoWalletsServices.Core.DataInterfaces.Utilities;
+using CryptoWalletsServices.Core.ServiceInterfaces;
+using CryptoWalletsServices.Core.Services;
 using CryptoWalletsServices.Data.Repositories;
 using CryptoWalletsServices.Data.Utilities;
 using LightInject;
@@ -25,6 +27,7 @@ namespace CryptoWalletsServices.WebCryptoSim
 		{
 			container.Register<ICryptographyUtility, CryptographyUtility>();
 			container.Register<IC1Repository, C1Repository>();
+			container.Register<IC1Service, C1Service>();
 			container.Register<Configuration>((factory) => WebConfigurationManager.OpenWebConfiguration("~/"));
 		}
 	}

@@ -93,7 +93,7 @@ namespace CryptoWalletsServices.Data.Repositories
 			return response;
 		}
 
-		public C1Rescponse<object> Activate(string msisdn, string iccid)
+		public C1Rescponse<bool> Activate(string msisdn, string iccid)
 		{
 			var parameters = new
 			{
@@ -102,7 +102,7 @@ namespace CryptoWalletsServices.Data.Repositories
 				callbackUri = ""
 			};
 
-			C1Rescponse<object> response = this.Request<object>("/Activation/Activate", parameters);
+			C1Rescponse<bool> response = this.Request<bool>("/Activation/Activate", parameters);
 			return response;
 		}
 
@@ -166,6 +166,15 @@ namespace CryptoWalletsServices.Data.Repositories
 			C1Rescponse<Guid> response = this.Request<Guid>("/Certificates/RequestAccess", parameters);
 			return response;
 		}
-
+		
+		public C1Rescponse<T> GetTransactionInfo<T>(Guid transactionId)
+		{
+			var parameters = new
+			{
+				transactionGuid = transactionId
+			};
+			C1Rescponse<T> response = this.Request<T>("/Transactions/GetTransactionInfo", parameters);
+			return response;
+		}
 	}
 }

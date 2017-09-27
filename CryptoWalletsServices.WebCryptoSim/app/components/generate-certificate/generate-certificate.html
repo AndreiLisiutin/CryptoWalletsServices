@@ -1,0 +1,83 @@
+﻿<h2>GenerateCertificate</h2>
+<div class="">
+	<form name="certForm">
+		<div class="form-group row" ng-class="{'has-danger': certForm.msisdn.$invalid}">
+			<label class="col-lg-2 col-form-label" for="msisdn">Номер телефона</label>
+			<input name="msisdn" id="msisdn" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.msisdn">
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': certForm.fullName.$invalid}">
+			<label class="col-lg-2 col-form-label" for="fullName">Полное имя</label>
+			<input name="fullName" id="fullName" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.fullName">
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': certForm.surname.$invalid}">
+			<label class="col-lg-2 col-form-label" for="surname">Фамилия</label>
+			<input name="surname" id="surname" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.surname">
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': certForm.name.$invalid}">
+			<label class="col-lg-2 col-form-label" for="name">Имя отчество</label>
+			<input name="name" id="name" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.name">
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': certForm.country.$invalid}">
+			<label class="col-lg-2 col-form-label" for="country">Страна</label>
+			<input name="country" id="country" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.country">
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': certForm.region.$invalid}">
+			<label class="col-lg-2 col-form-label" for="region">Регион</label>
+			<input name="region" id="region" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.region">
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': certForm.city.$invalid}">
+			<label class="col-lg-2 col-form-label" for="city">Регион</label>
+			<input name="city" id="city" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.city">
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': certForm.inn.$invalid}">
+			<label class="col-lg-2 col-form-label" for="inn">Регион</label>
+			<input name="inn" id="inn" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.inn">
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': certForm.snils.$invalid}">
+			<label class="col-lg-2 col-form-label" for="snils">Регион</label>
+			<input name="snils" id="snils" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.snils">
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': certForm.email.$invalid}">
+			<label class="col-lg-2 col-form-label" for="email">Регион</label>
+			<input name="email" id="email" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.email">
+		</div>
+		<button class="btn btn-primary" ng-disabled="certForm.$invalid" ng-click="doTest()">ОК</button>
+	</form>
+</div>
+<div ng-if="transactionId">
+	<h2>Результат</h2>
+	<form name="transactionForm">
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.transactionId.$invalid}">
+			<label class="col-lg-2 col-form-label" for="transactionId">Транзакция</label>
+			<input name="transactionId" id="transactionId" class="form-control col-lg-10" type="text"
+			       ng-model="transactionId" disabled>
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.description.$invalid}">
+			<label class="col-lg-2 col-form-label" for="description">Статус</label>
+			<input name="description" id="description" class="form-control col-lg-10" type="text"
+			       ng-model="transaction.description" disabled>
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.statusCode.$invalid}">
+			<label class="col-lg-2 col-form-label" for="statusCode">Код статуса</label>
+			<input name="statusCode" id="statusCode" class="form-control col-lg-10" type="text"
+			       ng-model="transaction.statusCode" disabled>
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.data.$invalid}">
+			<label class="col-lg-2 col-form-label">Результат</label>
+			<ul class="col-lg-10 list-group" ng-if="transaction.data">
+				<li class="list-group-item">{{transaction.data}}</li>
+			</ul>
+		</div>
+		<button class="btn btn-primary" ng-disabled="!transactionId" ng-click="getTransactionInfo()">Обновить</button>
+	</form>
+</div>

@@ -19,9 +19,11 @@
 		<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css">
+		<link rel="stylesheet" href="bower_components/nprogress/nprogress.css">
+		<link rel="stylesheet" href="app/styles.css">
 	</head>
 	<body ui-router-styles>
-		<div ui-view></div>
+		<div id="_indexUiView" ui-view></div>
 		<!--[if lt IE 7]>
 		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a
 				href="http://browsehappy.com/">upgrade
@@ -31,6 +33,7 @@
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="bower_components/tether/dist/js/tether.min.js"></script>
 		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bower_components/nprogress/nprogress.js"></script>
 		<script src="bower_components/lodash/lodash.js"></script>
 		<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 		<script src="bower_components/angular/angular.min.js"></script>
@@ -47,5 +50,6 @@
 		<script src="app/services/c1.service.js"></script>
 		<script src="app/components/navigation/navigation.js"></script>
 		<script src="app/components/get-certificates/get-certificates.js"></script>
+		<script src="app/components/generate-certificate/generate-certificate.js"></script>
 	</body>
 </html>

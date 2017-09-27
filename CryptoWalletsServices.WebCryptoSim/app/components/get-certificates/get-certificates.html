@@ -9,3 +9,30 @@
 		<button class="btn btn-primary" ng-disabled="certForm.$invalid" ng-click="doTest()">ОК</button>
 	</form>
 </div>
+<div ng-if="transactionId">
+	<h2>Результат</h2>
+	<form name="transactionForm">
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.transactionId.$invalid}">
+			<label class="col-lg-2 col-form-label" for="transactionId">Транзакция</label>
+			<input name="transactionId" id="transactionId" class="form-control col-lg-10" type="text"
+			       ng-model="transactionId" disabled>
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.description.$invalid}">
+			<label class="col-lg-2 col-form-label" for="description">Статус</label>
+			<input name="description" id="description" class="form-control col-lg-10" type="text"
+			       ng-model="transaction.description" disabled>
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.statusCode.$invalid}">
+			<label class="col-lg-2 col-form-label" for="statusCode">Код статуса</label>
+			<input name="statusCode" id="statusCode" class="form-control col-lg-10" type="text"
+			       ng-model="transaction.statusCode" disabled>
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.data.$invalid}">
+			<label class="col-lg-2 col-form-label">Результат</label>
+			<ul class="col-lg-10 list-group" ng-if="transaction.data">
+				<li ng-repeat="value in transaction.data" class="list-group-item">{{value}}</li>
+			</ul>
+		</div>
+		<button class="btn btn-primary" ng-disabled="!transactionId" ng-click="getTransactionInfo()">Обновить</button>
+	</form>
+</div>

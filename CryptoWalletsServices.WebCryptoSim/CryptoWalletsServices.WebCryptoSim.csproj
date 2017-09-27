@@ -100,11 +100,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\generate-certificate\generate-certificate.html" />
+    <Content Include="app\components\generate-certificate\generate-certificate.js" />
     <Content Include="app\components\get-certificates\get-certificates.html" />
     <Content Include="app\components\get-certificates\get-certificates.js" />
     <Content Include="app\components\navigation\navigation.html" />
     <Content Include="app\components\navigation\navigation.js" />
     <Content Include="app\components\_layout\main.html" />
+    <Content Include="app\styles.css" />
     <Content Include="bower_components\angular-animate\angular-animate.min.js" />
     <Content Include="bower_components\angular-resource\angular-resource.min.js" />
     <Content Include="bower_components\angular-route\angular-route.min.js" />
@@ -120,6 +123,7 @@
     <Content Include="bower_components\html5-boilerplate\dist\js\vendor\modernizr-2.8.3.min.js" />
     <Content Include="bower_components\jquery\dist\jquery.min.js" />
     <Content Include="bower_components\lodash\dist\lodash.min.js" />
+    <Content Include="bower_components\nprogress\nprogress.js" />
     <Content Include="bower_components\tether\dist\js\tether.min.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
@@ -132,6 +136,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\BaseExceptionHandleAttribure.cs" />
+    <Compile Include="Models\C1ViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -147,9 +152,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CryptoWalletsServices.Core\CryptoWalletsServices.Core.csproj">
       <Project>{f206ee6e-d511-4021-a75b-45e0261b02d3}</Project>

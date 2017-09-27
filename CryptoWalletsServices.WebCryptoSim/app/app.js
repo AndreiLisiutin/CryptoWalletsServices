@@ -79,4 +79,60 @@ angular.module('cryptoApp', ['crypto.controllers', 'crypto.extensions', 'crypto.
 				}
 			]);
 		}
+	])
+	.config([
+		'$httpProvider',
+		function ($httpProvider) {
+			//конфигурация загрузчика
+			var requests = 0;
+			var timer = false;
+			var nprogressThreshold = 10; // сколько мс подождать перед показом ползунка
+			var progressSelector = '#progress';
+			NProgress.configure({
+				parent: progressSelector,
+				showSpinner: false
+			});
+
+			$httpProvider.interceptors.push([
+				'$rootScope', '$q', '$window', '$timeout',
+				function ($rootScope, $q, $window, $timeout) {
+					return {
+						'request': function (config) {
+							if (requests == 0) {
+								timer = $timeout(function () {
+									if ($(progressSelector)[0]) {
+										NProgress.start();
+									}
+								}, nprogressThreshold);
+								$rootScope.loading = true;
+							}
+							requests++;
+							return config || $q.when(config);
+						},
+
+						'response': function (config) {
+							if (--requests == 0) {
+								$timeout.cancel(timer);
+								if ($(progressSelector)[0]) {
+									NProgress.done();
+								}
+								$rootScope.loading = false;
+							}
+							return config || $q.when(config);
+						},
+
+						'responseError': function (rejection) {
+							if (--requests == 0) {
+								$timeout.cancel(timer);
+								if ($(progressSelector)[0]) {
+									NProgress.done();
+								}
+								$rootScope.loading = false;
+							}
+							return $q.reject(rejection);
+						}
+					};
+				}
+			]);
+		}
 	]);

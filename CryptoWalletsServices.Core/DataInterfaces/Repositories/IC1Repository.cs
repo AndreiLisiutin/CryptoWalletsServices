@@ -11,7 +11,7 @@ namespace CryptoWalletsServices.Core.DataInterfaces.Repositories
 	{
 		C1Rescponse<string> Sign(byte[] file, Guid certificateId, string textForUser);
 
-		C1Rescponse<object> Activate(string msisdn, string iccid);
+		C1Rescponse<bool> Activate(string msisdn, string iccid);
 
 		C1Rescponse<Guid> GenerateCertificate(GenerateCertificateRequest requestData);
 
@@ -20,5 +20,7 @@ namespace CryptoWalletsServices.Core.DataInterfaces.Repositories
 		C1Rescponse<string> GetCertificate(Guid certificateId);
 
 		C1Rescponse<Guid> RequestAccessToCertificate(string msisdn);
+
+		C1Rescponse<T> GetTransactionInfo<T>(Guid transactionId);
 	}
 }

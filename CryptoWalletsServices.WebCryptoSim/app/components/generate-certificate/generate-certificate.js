@@ -5,18 +5,27 @@ angular.module('crypto.controllers')
 		'$stateProvider',
 		function ($stateProvider) {
 			$stateProvider
-				.state('crypto.navigation.getCertificates', {
-					url: '/getCertificates',
-					templateUrl: 'app/components/get-certificates/get-certificates.html',
-					controller: 'GetCertificatesController'
+				.state('crypto.navigation.generateCertificate', {
+					url: '/generateCertificate',
+					templateUrl: 'app/components/generate-certificate/generate-certificate.html',
+					controller: 'GenerateCertificateController'
 				});
 		}
 	])
-	.controller('GetCertificatesController', [
+	.controller('GenerateCertificateController', [
 		'$scope', '$state', 'toastr', 'C1Service',
 		function ($scope, $state, toastr, C1Service) {
 			$scope.parameters = {
-				msisdn: '79584066545'
+				msisdn: '79584066545',
+				fullName: 'Лисютин Андрей Петрович',
+				surname: 'Лисютин',
+				name: 'Андрей Петрович',
+				country: 'RU',
+				region: 'Татарстан',
+				city: 'Казань',
+				inn: '1234567890',
+				snils: '123-456-789 01',
+				email: 'lisutin.andrey@gmail.com'
 			};
 			$scope.transaction = {};
 			$scope.transactionId = null;
@@ -27,7 +36,7 @@ angular.module('crypto.controllers')
 
 			function doTest() {
 				$scope.transactionId = null;
-				C1Service.getCertificates($scope.parameters).$promise
+				C1Service.generateCertificate($scope.parameters).$promise
 					.then(function (data) {
 						$scope.transactionId = data.transactionGuid;
 						getTransactionInfo();
