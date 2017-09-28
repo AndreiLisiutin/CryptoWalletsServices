@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace CryptoWalletsServices.Data.Repositories
 {
+	/// <summary>
+	/// Репозиторий 1С.
+	/// </summary>
 	public class C1Repository : IC1Repository
 	{
 		private readonly string _1C_SERVICE_API_URL = "1C_ApiUrl";
@@ -24,11 +27,34 @@ namespace CryptoWalletsServices.Data.Repositories
 		private readonly string _1C_CERTIFICATE_EXCLUSIVE_ACCESS = "1C_ExclusiveAccess";
 		private Lazy<RestClient> _serviceApiClient;
 
+		/// <summary>
+		/// Утилита криптографии.
+		/// </summary>
 		protected ICryptographyUtility CryptographyUtility { get; private set; }
+
+		/// <summary>
+		/// Конфигурация системыц.
+		/// </summary>
 		protected Configuration Configuration { get; private set; }
+
+		/// <summary>
+		/// Рест-клиент к сервису 1С.
+		/// </summary>
 		protected RestClient ServiceApiClient => this._serviceApiClient.Value;
+
+		/// <summary>
+		/// Кодировка, используемая в 1С.
+		/// </summary>
 		protected Encoding ServiceApiEncoding { get; private set; }
+
+		/// <summary>
+		/// Шаблон для генерации пользовательского сертификата.
+		/// </summary>
 		protected Guid ServiceCertificateTemplate { get; private set; }
+
+		/// <summary>
+		/// УЦ для генерации пользовательского сертификата.
+		/// </summary>
 		protected Guid ServiceAuthority { get; private set; }
 		protected bool ServiceCertificateHasExclusiveAccess { get; private set; }
 
@@ -43,6 +69,11 @@ namespace CryptoWalletsServices.Data.Repositories
 			this._serviceApiClient = new Lazy<RestClient>(() => new RestClient(_GetConfig(_1C_SERVICE_API_URL)), true);
 		}
 
+		/// <summary>
+		/// Получить значение в конфигурации по ключу.
+		/// </summary>
+		/// <param name="configName">Ключ.</param>
+		/// <returns>Значение.</returns>
 		private string _GetConfig(string configName)
 		{
 			Argument.Require(this.Configuration != null, "Не найдена конфигурация.");
@@ -55,6 +86,15 @@ namespace CryptoWalletsServices.Data.Repositories
 			return configValue;
 		}
 
+		/// <summary>
+		/// Выполнить запрос к 1С.
+		/// </summary>
+		/// <typeparam name="T">Уберем потом.</typeparam>
+		/// <param name="url">Относительный URL запроса.</param>
+		/// <param name="data">Данные, передаваемые ва 1С.</param>
+		/// <param name="requestTransform">Если что-то с умолчаниями запроса нужно поменять.</param>
+		/// <param name="method">Метод запроса.</param>
+		/// <returns>Информация о транзакции.</returns>
 		protected C1Rescponse<T> Request<T>(string url, object data, Action<RestRequest> requestTransform = null, Method method = Method.POST)
 		{
 			Argument.Require(!string.IsNullOrEmpty(url), "URL метода пустой.");
@@ -74,7 +114,12 @@ namespace CryptoWalletsServices.Data.Repositories
 			return response.Data;
 		}
 
-		public bool IsSuccessStatusCode(HttpStatusCode statusCode)
+		/// <summary>
+		/// Успешный ли код веб-ответа.
+		/// </summary>
+		/// <param name="statusCode">Код веб-ответа.</param>
+		/// <returns>Успешный ли код веб-ответа.</returns>
+		private bool IsSuccessStatusCode(HttpStatusCode statusCode)
 		{
 			return ((int)statusCode >= 200) && ((int)statusCode <= 299);
 		}

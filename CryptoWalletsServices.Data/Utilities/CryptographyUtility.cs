@@ -16,10 +16,23 @@ namespace CryptoWalletsServices.Data.Utilities
 	/// </summary>
 	public class CryptographyUtility : ICryptographyUtility
 	{
+		/// <summary>
+		/// Ключ в конфигурации, по которому лежит отпечаток сертификата для его поиска.
+		/// </summary>
 		private readonly string _1C_SERVICE_CERTIFICATE_THUMBPRINT = "1C_CertificateThumbprint";
+		/// <summary>
+		/// Сертификат для подписи запросов к 1С. Ленивая версия.
+		/// </summary>
 		private Lazy<X509Certificate2> _serviceApiCertificate;
 
+		/// <summary>
+		/// Конфигурация проекта.
+		/// </summary>
 		protected Configuration Configuration { get; private set; }
+
+		/// <summary>
+		/// Сертификат для подписи запросов к 1С.
+		/// </summary>
 		protected X509Certificate2 ServiceApiCertificate => this._serviceApiCertificate.Value;
 
 		public CryptographyUtility(Configuration configuration)
