@@ -9,7 +9,7 @@ namespace CryptoWalletsServices.Core.DataInterfaces.Repositories
 {
 	public interface IC1Repository
 	{
-		C1Rescponse<string> Sign(byte[] file, Guid certificateId, string textForUser);
+		C1Rescponse<string> Sign(FinanceDocument document, Guid certificateId, string textForUser);
 
 		C1Rescponse<bool> Activate(string msisdn, string iccid);
 
@@ -18,6 +18,8 @@ namespace CryptoWalletsServices.Core.DataInterfaces.Repositories
 		C1Rescponse<List<Guid>> GetCertificates(string msisdn);
 
 		C1Rescponse<string> GetCertificate(Guid certificateId);
+
+		C1Rescponse<string> Authenticate(Guid certificateId, string textForUser);
 
 		C1Rescponse<Guid> RequestAccessToCertificate(string msisdn);
 

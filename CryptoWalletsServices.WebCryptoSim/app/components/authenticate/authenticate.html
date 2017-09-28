@@ -1,0 +1,42 @@
+﻿<h2>Authenticate</h2>
+<div class="">
+	<form name="certForm">
+		<div class="form-group row" ng-class="{'has-danger': certForm.certificateId.$invalid}">
+			<label class="col-lg-2 col-form-label" for="certificateId">Сертификат</label>
+			<input name="certificateId" id="certificateId" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.certificateId">
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': certForm.textForUser.$invalid}">
+			<label class="col-lg-2 col-form-label" for="textForUser">Текст пользователю</label>
+			<input name="textForUser" id="textForUser" class="form-control col-lg-10" type="text" required
+			       ng-model="parameters.textForUser">
+		</div>
+		<button class="btn btn-primary" ng-disabled="certForm.$invalid" ng-click="doTest()">ОК</button>
+	</form>
+</div>
+<div ng-if="transactionId">
+	<h2>Результат</h2>
+	<form name="transactionForm">
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.transactionId.$invalid}">
+			<label class="col-lg-2 col-form-label" for="transactionId">Транзакция</label>
+			<input name="transactionId" id="transactionId" class="form-control col-lg-10" type="text"
+			       ng-model="transactionId" disabled>
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.description.$invalid}">
+			<label class="col-lg-2 col-form-label" for="description">Статус</label>
+			<input name="description" id="description" class="form-control col-lg-10" type="text"
+			       ng-model="transaction.description" disabled>
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.statusCode.$invalid}">
+			<label class="col-lg-2 col-form-label" for="statusCode">Код статуса</label>
+			<input name="statusCode" id="statusCode" class="form-control col-lg-10" type="text"
+			       ng-model="transaction.statusCode" disabled>
+		</div>
+		<div class="form-group row" ng-class="{'has-danger': transactionForm.data.$invalid}">
+			<label class="col-lg-2 col-form-label">Результат</label>
+			<textarea name="data" id="data" class="col-lg-10 form-control" disabled
+			          rows="15" ng-model="transaction.data"></textarea>
+		</div>
+		<button class="btn btn-primary" ng-disabled="!transactionId" ng-click="getTransactionInfo()">Обновить</button>
+	</form>
+</div>

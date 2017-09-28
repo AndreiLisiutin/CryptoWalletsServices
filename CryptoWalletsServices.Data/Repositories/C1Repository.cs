@@ -79,7 +79,7 @@ namespace CryptoWalletsServices.Data.Repositories
 			return ((int)statusCode >= 200) && ((int)statusCode <= 299);
 		}
 
-		public C1Rescponse<string> Sign(byte[] file, Guid certificateId, string textForUser)
+		public C1Rescponse<string> Sign(FinanceDocument document, Guid certificateId, string textForUser)
 		{
 			var parameters = new
 			{
@@ -89,7 +89,7 @@ namespace CryptoWalletsServices.Data.Repositories
 			};
 
 			C1Rescponse<string> response = this.Request<string>("/Sign/Sign", parameters,
-				r => r.AddFileBytes("data", file, "pdfsample.pdf", "application/pdf"));
+				r => r.AddFileBytes("data", document.Data, document.Name, document.MimeType));
 			return response;
 		}
 
@@ -164,6 +164,19 @@ namespace CryptoWalletsServices.Data.Repositories
 			};
 
 			C1Rescponse<Guid> response = this.Request<Guid>("/Certificates/RequestAccess", parameters);
+			return response;
+		}
+
+		public C1Rescponse<string> Authenticate(Guid certificateId, string textForUser)
+		{
+			var parameters = new
+			{
+				certificateGuid = certificateId,
+				text = textForUser,
+				callbackUri = ""
+			};
+
+			C1Rescponse<string> response = this.Request<string>("/Authentication/Authenticate", parameters);
 			return response;
 		}
 		

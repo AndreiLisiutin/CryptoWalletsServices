@@ -16,5 +16,11 @@ namespace CryptoWalletsServices.Core.ServiceInterfaces
 		C1Rescponse<T> GetTransactionInfo<T>(Guid transactionId);
 
 		C1Rescponse<bool> Activate(string msisdn, string iccid);
+
+		C1Rescponse<string> Authenticate(Guid certificateId, string textForUser);
+
+		C1Rescponse<string> Sign(FinanceDocument document, Guid certificateId, string textForUser);
+
+		C1Rescponse<string> GetCertificate(Guid certificateId);
 	}
 }

@@ -5,6 +5,7 @@ angular.module('crypto.extensions', [
 	'ngSanitize',
 	'ui.router',
 	'ngAnimate',
+	'naif.base64',
 	'toastr'
 ]);
 angular.module('crypto.services', [
@@ -87,7 +88,7 @@ angular.module('cryptoApp', ['crypto.controllers', 'crypto.extensions', 'crypto.
 			var requests = 0;
 			var timer = false;
 			var nprogressThreshold = 10; // сколько мс подождать перед показом ползунка
-			var progressSelector = '#progress';
+			var progressSelector = 'body';//'#progress';
 			NProgress.configure({
 				parent: progressSelector,
 				showSpinner: false

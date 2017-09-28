@@ -60,6 +60,34 @@ namespace CryptoWalletsServices.Core.Services
 			return response;
 		}
 
+		public C1Rescponse<string> Sign(FinanceDocument document, Guid certificateId, string textForUser)
+		{
+			Argument.Require(document != null, "Документ пустой.");
+			Argument.Require((document.Data?.Length ?? 0) != 0, "Документ пустой.");
+			Argument.Require(!string.IsNullOrWhiteSpace(document.Name), "Название документа пустое.");
+			Argument.Require(!string.IsNullOrWhiteSpace(document.MimeType), "Mime-type документа пустой.");
+			Argument.Require(certificateId != Guid.Empty, "Идентификатор сертификата пустой.");
+			Argument.Require(!string.IsNullOrWhiteSpace(textForUser), "Текст для пользователя пустой.");
+
+			var response = c1Repository.Sign(document, certificateId, textForUser);
+			return response;
+		}
+
+		public C1Rescponse<string> Authenticate(Guid certificateId, string textForUser)
+		{
+			Argument.Require(certificateId != Guid.Empty, "Идентификатор сертификата пустой.");
+			Argument.Require(!string.IsNullOrWhiteSpace(textForUser), "Текст для пользователя пустой.");
+			var response = c1Repository.Authenticate(certificateId, textForUser);
+			return response;
+		}
+
+		public C1Rescponse<string> GetCertificate(Guid certificateId)
+		{
+			Argument.Require(certificateId != Guid.Empty, "Идентфификатор сертификата пустой.");
+			var response = c1Repository.GetCertificate(certificateId);
+			return response;
+		}
+
 
 	}
 }

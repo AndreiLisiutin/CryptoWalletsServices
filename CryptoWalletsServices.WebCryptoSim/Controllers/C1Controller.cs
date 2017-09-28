@@ -50,6 +50,38 @@ namespace CryptoWalletsServices.WebCryptoSim.Controllers
 			return response;
 		}
 
+		[Route("Authenticate")]
+		[HttpPost]
+		public C1Rescponse<string> Authenticate([FromBody] AuthenticateViewModel model)
+		{
+			Argument.Require(model != null, "Параметры не заданы.");
+			var response = c1Service.Authenticate(model.CertificateId, model.TextForUser);
+			return response;
+		}
+
+		[Route("Sign")]
+		[HttpPost]
+		public C1Rescponse<string> Sign([FromBody] SignViewModel model)
+		{
+			Argument.Require(model != null, "Параметры не заданы.");
+			FinanceDocument document = new FinanceDocument(model.DocumentBase64Data, model.DocumentName, model.DocumentMimeType);
+
+			var response = c1Service.Sign(document, model.CertificateId, model.TextForUser);
+			return response;
+		}
+
+		[Route("GetCertificate")]
+		[HttpPost]
+		public C1Rescponse<string> GetCertificate([FromBody] GetCertificateViewModel model)
+		{
+			Argument.Require(model != null, "Параметры не заданы.");
+			var response = c1Service.GetCertificate(model.CertificateId);
+			return response;
+		}
+
+
+		#region получение результатов транзакций
+
 		[Route("GetTransactionInfo")]
 		[HttpPost]
 		public C1Rescponse<object> GetTransactionInfo([FromBody] GetTransactionInfoViewModel model)
@@ -59,5 +91,6 @@ namespace CryptoWalletsServices.WebCryptoSim.Controllers
 			return response;
 		}
 
+		#endregion получение результатов транзакций
 	}
 }
