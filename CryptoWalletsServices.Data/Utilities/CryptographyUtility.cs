@@ -35,6 +35,10 @@ namespace CryptoWalletsServices.Data.Utilities
 		/// </summary>
 		protected X509Certificate2 ServiceApiCertificate => this._serviceApiCertificate.Value;
 
+		/// <summary>
+		/// Утилита для реализации криптографических алгоритмов.
+		/// </summary>
+		/// <param name="configuration">Конфигурация проекта.</param>
 		public CryptographyUtility(Configuration configuration)
 		{
 			this.Configuration = configuration;

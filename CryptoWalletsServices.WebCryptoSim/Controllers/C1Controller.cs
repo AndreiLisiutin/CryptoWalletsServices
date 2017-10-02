@@ -39,7 +39,7 @@ namespace CryptoWalletsServices.WebCryptoSim.Controllers
 		/// <returns>Информация о транзакции.</returns>
 		[Route("GetCertificates")]
 		[HttpPost]
-		public C1Rescponse<List<Guid>> GetCertificates([FromBody] GetCertificatesViewModel model)
+		public C1Rescponse GetCertificates([FromBody] GetCertificatesViewModel model)
 		{
 			Argument.Require(model != null, "Параметры не заданы.");
 			Argument.Require(!string.IsNullOrWhiteSpace(model.Msisdn), "Номер телефона пустой.");
@@ -54,7 +54,7 @@ namespace CryptoWalletsServices.WebCryptoSim.Controllers
 		/// <returns>Информация о транзакции.</returns>
 		[Route("GenerateCertificate")]
 		[HttpPost]
-		public C1Rescponse<Guid> GenerateCertificate([FromBody] GenerateCertificateRequest model)
+		public C1Rescponse GenerateCertificate([FromBody] GenerateCertificateRequest model)
 		{
 			Argument.Require(model != null, "Параметры не заданы.");
 			var response = c1Service.GenerateCertificate(model);
@@ -70,7 +70,7 @@ namespace CryptoWalletsServices.WebCryptoSim.Controllers
 		/// <returns>Информация о транзакции.</returns>
 		[Route("Activate")]
 		[HttpPost]
-		public C1Rescponse<bool> Activate([FromBody] ActivateViewModel model)
+		public C1Rescponse Activate([FromBody] ActivateViewModel model)
 		{
 			Argument.Require(model != null, "Параметры не заданы.");
 			var response = c1Service.Activate(model.Msisdn, model.Iccid);
@@ -84,7 +84,7 @@ namespace CryptoWalletsServices.WebCryptoSim.Controllers
 		/// <returns>Информация о транзакции.</returns>
 		[Route("Authenticate")]
 		[HttpPost]
-		public C1Rescponse<string> Authenticate([FromBody] AuthenticateViewModel model)
+		public C1Rescponse Authenticate([FromBody] AuthenticateViewModel model)
 		{
 			Argument.Require(model != null, "Параметры не заданы.");
 			var response = c1Service.Authenticate(model.CertificateId, model.TextForUser);
@@ -100,7 +100,7 @@ namespace CryptoWalletsServices.WebCryptoSim.Controllers
 		/// <returns>Информация о транзакции.</returns>
 		[Route("Sign")]
 		[HttpPost]
-		public C1Rescponse<string> Sign([FromBody] SignViewModel model)
+		public C1Rescponse Sign([FromBody] SignViewModel model)
 		{
 			Argument.Require(model != null, "Параметры не заданы.");
 			FinanceDocument document = new FinanceDocument(model.DocumentBase64Data, model.DocumentName, model.DocumentMimeType);
@@ -116,13 +116,25 @@ namespace CryptoWalletsServices.WebCryptoSim.Controllers
 		/// <returns>Информация о транзакции.</returns>
 		[Route("GetCertificate")]
 		[HttpPost]
-		public C1Rescponse<string> GetCertificate([FromBody] GetCertificateViewModel model)
+		public C1Rescponse GetCertificate([FromBody] GetCertificateViewModel model)
 		{
 			Argument.Require(model != null, "Параметры не заданы.");
 			var response = c1Service.GetCertificate(model.CertificateId);
 			return response;
 		}
 
+		#region Нас вызывает 1C
+
+		[Route("GetCertificatesResponse")]
+		[HttpPost]
+		public C1Rescponse GetCertificatesResponse([FromBody] C1Rescponse<List<Guid>> model)
+		{
+			Argument.Require(model != null, "Пустой ответ от 1С.");
+			var response = c1Service.GetCertificate(model.CertificateId);
+			return response;
+		}
+
+		#endregion Нас вызывает 1C
 
 		#region получение результатов транзакций
 

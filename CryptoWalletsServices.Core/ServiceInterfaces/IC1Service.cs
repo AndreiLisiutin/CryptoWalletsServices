@@ -9,18 +9,18 @@ namespace CryptoWalletsServices.Core.ServiceInterfaces
 {
 	public interface IC1Service
 	{
-		C1Rescponse<List<Guid>> GetCertificates(string msisdn);
+		C1Rescponse GetCertificates(string msisdn);
 
-		C1Rescponse<Guid> GenerateCertificate(GenerateCertificateRequest requestData);
+		C1Rescponse GenerateCertificate(GenerateCertificateRequest requestData);
 
 		C1Rescponse<T> GetTransactionInfo<T>(Guid transactionId);
 
-		C1Rescponse<bool> Activate(string msisdn, string iccid);
+		C1Rescponse Activate(string msisdn, string iccid);
 
-		C1Rescponse<string> Authenticate(Guid certificateId, string textForUser);
+		C1Rescponse Authenticate(Guid certificateId, string textForUser);
 
-		C1Rescponse<string> Sign(FinanceDocument document, Guid certificateId, string textForUser);
+		C1Rescponse Sign(FinanceDocument document, Guid certificateId, string textForUser);
 
-		C1Rescponse<string> GetCertificate(Guid certificateId);
+		C1Rescponse GetCertificate(Guid certificateId);
 	}
 }
