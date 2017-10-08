@@ -127,11 +127,10 @@ namespace CryptoWalletsServices.WebCryptoSim.Controllers
 
 		[Route("GetCertificatesResponse")]
 		[HttpPost]
-		public C1Rescponse GetCertificatesResponse([FromBody] C1Rescponse<List<Guid>> model)
+		public IHttpActionResult GetCertificatesResponse([FromBody] C1Rescponse<List<Guid>> model)
 		{
 			Argument.Require(model != null, "Пустой ответ от 1С.");
-			var response = c1Service.GetCertificate(model.CertificateId);
-			return response;
+			return Ok();
 		}
 
 		#endregion Нас вызывает 1C
