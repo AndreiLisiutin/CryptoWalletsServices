@@ -129,9 +129,12 @@
     <Content Include="bower_components\angular\angular.min.js" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap.min.css" />
     <Content Include="bower_components\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="bower_components\html5-boilerplate\dist\css\main.css" />
+    <Content Include="bower_components\html5-boilerplate\dist\css\normalize.css" />
     <Content Include="bower_components\html5-boilerplate\dist\js\vendor\modernizr-2.8.3.min.js" />
     <Content Include="bower_components\jquery\dist\jquery.min.js" />
     <Content Include="bower_components\lodash\dist\lodash.min.js" />
+    <Content Include="bower_components\nprogress\nprogress.css" />
     <Content Include="bower_components\nprogress\nprogress.js" />
     <Content Include="bower_components\tether\dist\js\tether.min.js" />
     <Content Include="Global.asax" />
@@ -154,6 +157,7 @@
     <Content Include="bower.json" />
     <Content Include="app\services\c1.service.js" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
