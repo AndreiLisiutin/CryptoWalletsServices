@@ -25,6 +25,9 @@ namespace CryptoWalletsServices.Data.Repositories
 		private readonly string _1C_CERTIFICATE_TEMPLATE = "1C_CertificateTemplate";
 		private readonly string _1C_CERTIFICATE_AUTHORITY = "1C_CertificateAuthority";
 		private readonly string _1C_CERTIFICATE_EXCLUSIVE_ACCESS = "1C_ExclusiveAccess";
+		/// <summary>
+		/// Рест-клиент к сервису 1С. Ленивая версия.
+		/// </summary>
 		private Lazy<RestClient> _serviceApiClient;
 
 		/// <summary>
@@ -33,7 +36,7 @@ namespace CryptoWalletsServices.Data.Repositories
 		protected ICryptographyUtility CryptographyUtility { get; private set; }
 
 		/// <summary>
-		/// Конфигурация системыц.
+		/// Конфигурация системы.
 		/// </summary>
 		protected Configuration Configuration { get; private set; }
 
@@ -56,8 +59,17 @@ namespace CryptoWalletsServices.Data.Repositories
 		/// УЦ для генерации пользовательского сертификата.
 		/// </summary>
 		protected Guid ServiceAuthority { get; private set; }
+
+		/// <summary>
+		/// Будут ли при генерации у пользователей эксклюзивные доступы к сертификатам.
+		/// </summary>
 		protected bool ServiceCertificateHasExclusiveAccess { get; private set; }
 
+		/// <summary>
+		/// Репозиторий 1С.
+		/// </summary>
+		/// <param name="cryptographyUtility">Утилита для работы с криптографией.</param>
+		/// <param name="configuration">Конфигурация системы.</param>
 		public C1Repository(ICryptographyUtility cryptographyUtility, Configuration configuration)
 		{
 			this.CryptographyUtility = cryptographyUtility;
@@ -124,7 +136,14 @@ namespace CryptoWalletsServices.Data.Repositories
 			return ((int)statusCode >= 200) && ((int)statusCode <= 299);
 		}
 
-		public C1Rescponse<string> Sign(FinanceDocument document, Guid certificateId, string textForUser)
+		/// <summary>
+		/// Отправить запрос на подпись документа.
+		/// </summary>
+		/// <param name="document">Документ.</param>
+		/// <param name="certificateId">Идентификатор сертификата пользователя.</param>
+		/// <param name="textForUser">текст для пользователя.</param>
+		/// <returns>Ответ 1С.</returns>
+		public C1Rescponse Sign(FinanceDocument document, Guid certificateId, string textForUser)
 		{
 			var parameters = new
 			{
@@ -138,7 +157,13 @@ namespace CryptoWalletsServices.Data.Repositories
 			return response;
 		}
 
-		public C1Rescponse<bool> Activate(string msisdn, string iccid)
+		/// <summary>
+		/// Отправить запрос на активацию пользователя.
+		/// </summary>
+		/// <param name="msisdn">Номер телефона.</param>
+		/// <param name="iccid">ICCID симки.</param>
+		/// <returns>Ответ 1С.</returns>
+		public C1Rescponse Activate(string msisdn, string iccid)
 		{
 			var parameters = new
 			{
@@ -151,7 +176,12 @@ namespace CryptoWalletsServices.Data.Repositories
 			return response;
 		}
 
-		public C1Rescponse<Guid> GenerateCertificate(GenerateCertificateRequest requestData)
+		/// <summary>
+		/// Отправить запрос на генерацию сертификата пользователя.
+		/// </summary>
+		/// <param name="requestData">Данные пользователя.</param>
+		/// <returns>Ответ 1С.</returns>
+		public C1Rescponse GenerateCertificate(GenerateCertificateRequest requestData)
 		{
 			var parameters = new
 			{
@@ -177,7 +207,12 @@ namespace CryptoWalletsServices.Data.Repositories
 			return response;
 		}
 
-		public C1Rescponse<List<Guid>> GetCertificates(string msisdn)
+		/// <summary>
+		/// Отправить запрос на получение списка сертификатов телефона.
+		/// </summary>
+		/// <param name="msisdn">Номер телефона.</param>
+		/// <returns>Ответ 1С.</returns>
+		public C1Rescponse GetCertificates(string msisdn)
 		{
 			var parameters = new
 			{
@@ -189,7 +224,12 @@ namespace CryptoWalletsServices.Data.Repositories
 			return response;
 		}
 
-		public C1Rescponse<string> GetCertificate(Guid certificateId)
+		/// <summary>
+		/// Отправить запрос на получение тела сертификата пользователя.
+		/// </summary>
+		/// <param name="certificateId">Идентификатор сертификата пользователя.</param>
+		/// <returns>Ответ 1С.</returns>
+		public C1Rescponse GetCertificate(Guid certificateId)
 		{
 			var parameters = new
 			{
@@ -201,7 +241,13 @@ namespace CryptoWalletsServices.Data.Repositories
 			return response;
 		}
 
-		public C1Rescponse<Guid> RequestAccessToCertificate(string msisdn)
+		/// <summary>
+		/// Отправить запрос на аутентификацию в 1С.
+		/// </summary>
+		/// <param name="certificateId">Идентификатор сертификата пользователя.</param>
+		/// <param name="textForUser">Текст для пользователя.</param>
+		/// <returns>Ответ 1С.</returns>
+		public C1Rescponse RequestAccessToCertificate(string msisdn)
 		{
 			var parameters = new
 			{
@@ -212,7 +258,12 @@ namespace CryptoWalletsServices.Data.Repositories
 			return response;
 		}
 
-		public C1Rescponse<string> Authenticate(Guid certificateId, string textForUser)
+		/// <summary>
+		/// Отправить запрос на запрос доступа к сертификату пользователя в 1С.
+		/// </summary>
+		/// <param name="msisdn">Номер телефона.</param>
+		/// <returns>Ответ 1С.</returns>
+		public C1Rescponse Authenticate(Guid certificateId, string textForUser)
 		{
 			var parameters = new
 			{
@@ -224,7 +275,13 @@ namespace CryptoWalletsServices.Data.Repositories
 			C1Rescponse<string> response = this.Request<string>("/Authentication/Authenticate", parameters);
 			return response;
 		}
-		
+
+		/// <summary>
+		/// Получить инфу о запросе, ранее отправленном в 1С.
+		/// </summary>
+		/// <typeparam name="T">Тип возвращаемого 1С значения.</typeparam>
+		/// <param name="transactionId">Идентификатор запроса.</param>
+		/// <returns>Результат запроса в 1С.</returns>
 		public C1Rescponse<T> GetTransactionInfo<T>(Guid transactionId)
 		{
 			var parameters = new

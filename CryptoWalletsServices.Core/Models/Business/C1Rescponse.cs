@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 namespace CryptoWalletsServices.Core.Models.Business
 {
 	/// <summary>
-	/// Модель ответа на запрос 1С.
+	/// Модель ответа на запрос без результатов ответа 1С.
 	/// </summary>
-	/// <typeparam name="T">Основная информация ответа 1С.</typeparam>
-	public class C1Rescponse<T>
+	public class C1Rescponse
 	{
 		/// <summary>
 		/// Идентификатор транзакции 1С.
@@ -26,7 +25,14 @@ namespace CryptoWalletsServices.Core.Models.Business
 		/// Статуст транзакции.
 		/// </summary>
 		public string Description { get; set; }
+	}
 
+	/// <summary>
+	/// Модель ответа на запрос 1С.
+	/// </summary>
+	/// <typeparam name="T">Основная информация ответа 1С.</typeparam>
+	public class C1Rescponse<T>: C1Rescponse
+	{
 		/// <summary>
 		/// Данные, возвращаемые 1С.
 		/// </summary>
