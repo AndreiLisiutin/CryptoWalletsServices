@@ -33,6 +33,18 @@ namespace CryptoWalletsServices.Core.Models.Business
 	/// <typeparam name="T">Основная информация ответа 1С.</typeparam>
 	public class C1Rescponse<T>: C1Rescponse
 	{
+		public C1Rescponse()
+		{
+
+		}
+		public C1Rescponse(C1Rescponse response)
+		{
+			this.Data = default(T);
+			this.Description = response.Description;
+			this.StatusCode = response.StatusCode;
+			this.TransactionGuid = response.TransactionGuid;
+		}
+
 		/// <summary>
 		/// Данные, возвращаемые 1С.
 		/// </summary>
